@@ -79,6 +79,7 @@ fs.readFile('ingput.txt', 'utf-8', (err, data) => {
          points.push(new point(info[2*e + 1], info[2*e + 2]));
       }
       const final = Lagrange(points).toString();
+      console.log(final);
       var save = require('fs');
       save.writeFile('otput.txt', final, (err) => {
          if (err) throw err;

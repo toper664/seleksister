@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#import <Foundation/Foundation.h>
 
 typedef struct {
     double x, y;
@@ -59,30 +58,41 @@ double* lagrange(Point* points, int length) {
     return polynom;
 }
 
-int main() {
-    FILE* inputFile = fopen("ingput.txt", "r");
-    int degree;
-    fscanf(inputFile, "%d", &degree);
-
-    Point* points = (Point*)malloc((degree + 1) * sizeof(Point));
-    for (int i = 0; i < degree + 1; i++) {
-        double x, y;
-        fscanf(inputFile, "%lf %lf", &x, &y);
-        points[i].x = x;
-        points[i].y = y;
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *inputFilePath = @"ingput.txt";
+        NSString *outputFilePath = @"otput.txt";
+        
+        if (![fileManager fileExistsAtPath:inputFilePath]) {
+            NSLog(@"Input file not found.");
+            return 1;
+        }
+        
+        FILE *inputFile = fopen([inputFilePath UTF8String], "r");
+        int degree;
+        fscanf(inputFile, "%d", &degree);
+        
+        Point *points = (Point*)malloc((degree + 1) * sizeof(Point));
+        for (int i = 0; i < degree + 1; i++) {
+            double x, y;
+            fscanf(inputFile, "%lf %lf", &x, &y);
+            points[i].x = x;
+            points[i].y = y;
+        }
+        fclose(inputFile);
+        
+        double *finalCoeff = lagrange(points, degree + 1);
+        
+        FILE *outputFile = fopen([outputFilePath UTF8String], "w");
+        for (int i = 0; i < degree + 1; i++) {
+            fprintf(outputFile, "%.0f ", finalCoeff[i]);
+        }
+        fclose(outputFile);
+        free(finalCoeff);
+        free(points);
+        
+        NSLog(@"Lagrange coefficients successfully written.");
     }
-    fclose(inputFile);
-
-    double* finalCoeff = lagrange(points, degree + 1);
-    FILE* outputFile = fopen("otput.txt", "w");
-    for (int i = 0; i < degree + 1; i++) {
-        fprintf(outputFile, "%.0f ", finalCoeff[i]);
-    }
-    fclose(outputFile);
-    free(finalCoeff);
-    free(points);
-
-    printf("Lagrange coefficients successfully written.\n");
-
     return 0;
 }

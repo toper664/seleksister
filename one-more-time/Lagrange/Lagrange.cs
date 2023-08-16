@@ -64,7 +64,7 @@ public class Lagrange
         return coeff;
     }
 
-    public static List<double> Lagrange(List<Point> points)
+    public static List<double> ILagrange(List<Point> points)
     {
         List<double> polynom = Zeros(points.Count);
         List<double> coeff;
@@ -95,7 +95,7 @@ public class Lagrange
             }
         }
 
-        List<double> final = Lagrange(points);
+        List<double> final = ILagrange(points);
         using (StreamWriter output = new StreamWriter("otput.txt"))
         {
             foreach (double coeff in final)
