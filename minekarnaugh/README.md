@@ -23,6 +23,6 @@ Logic gate juga dapat digunakan dalam pembuatan 7-segment LED, dimana input beru
 
 Selamat mencoba!
 
-𝓘𝓷 𝓢𝓸𝓵𝓲𝓽𝓾𝓭𝓮 𝓦𝓱𝓮𝓻𝓮 𝓦𝓮 𝓐𝓻𝓮 𝓐𝓵𝓸𝓷𝓮.
+𝓘𝓷 𝓢𝓸𝓵𝓲𝓽𝓾𝓭𝓮 𝓦𝓱𝓮𝓻𝓮 𝓦𝓮 𝓐𝓻𝓮 𝓛𝓮𝓪𝓼𝓽 𝓐𝓵𝓸𝓷𝓮.
 
 COPYRIGHT 2023 Nexafero. No Rights Reserved.
